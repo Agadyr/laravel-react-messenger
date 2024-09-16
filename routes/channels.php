@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
-
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+use \App\Http\Resources\UserResource;
+Broadcast::channel("online", function ($user) {
+    return $user ? new UserResource($user) : null;
 });
