@@ -9,12 +9,12 @@ function Home() {
 
 Home.layout = (page) => {
     return (
-        <>
+        <AuthenticatedLayout>
             <ChatLayout children={page}>
                 Messages
             </ChatLayout>
-        </>
+        </AuthenticatedLayout>
     )
 }
 
-export default Home;
+export default Home

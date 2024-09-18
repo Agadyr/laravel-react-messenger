@@ -1,8 +1,46 @@
 import {Menu, MenuButton, MenuItem, Transition} from "@headlessui/react";
 import {Fragment} from "react";
-import {LockClosedIcon, LockOpenIcon, UserIcon} from "@heroicons/react/16/solid/index.js";
+import {
+    EllipsisVerticalIcon,
+    LockClosedIcon,
+    LockOpenIcon,
+    ShieldCheckIcon,
+    UserIcon
+} from "@heroicons/react/24/solid/index.js";
+import axios from "axios";
 
 export default function UserOptionsDropdown({ conversation }){
+    const changeUserRole = () => {
+        console.log("Change user role")
+        if(!conversation.is_user) {
+            return
+        }
+
+        axios
+            .post(route("user.ChangeRole", conversation.id))
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const onBlockUser = () => {
+        console.log("Block user")
+        if(!conversation.is_user) {
+            return
+        }
+
+        axios
+            .post(route("user.blockUnBlock", conversation.id))
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
     return (
         <div>
             <Menu as="div" className="relative inline-block text-left">

@@ -1,4 +1,7 @@
 import {Link, usePage} from "@inertiajs/react";
+import UserAvatar from "@/Components/App/UserAvatar.jsx";
+import GroupAvatar from "@/Components/App/GroupAvatar.jsx";
+import UserOptionsDropdown from "@/Components/App/UserOptionsDropdown.jsx";
 
 const ConversationItem = ({
     conversation,
@@ -8,7 +11,7 @@ const ConversationItem = ({
     const page = usePage()
     const currentUser = page.props.auth.user
     let classes  = " border-transparent"
-
+    console.log(currentUser, 'currentUser')
     if (selectedConversation) {
         if (
             !selectedConversation.is_group &&
@@ -25,7 +28,6 @@ const ConversationItem = ({
             classes = "border-blue-500 bg-black/20"
         }
     }
-
     return (
         <Link
             href={
@@ -34,7 +36,7 @@ const ConversationItem = ({
                     : route("chat.user", conversation)
             }
             preserveState
-            className={"conversation-item flex items-center gap-2 p-2 text-gray-300 transition-all cursor-pointer" +
+            className={"w-full conversation-item flex items-center gap-2 p-2 text-gray-300 transition-all cursor-pointer" +
                 "border-1-4 hover:bg-black/30" +
             classes +
                 (conversation.is_user && currentUser.isAdmin ? " pr-2" : "pr-4")}
@@ -71,3 +73,5 @@ const ConversationItem = ({
         </Link>
     )
 }
+
+export default ConversationItem

@@ -83,9 +83,9 @@ class User extends Authenticatable
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'is_group' => $this->is_group,
-            'is_user' => $this->is_user,
-            'is_admin' => (bool) $this->is_admin,
+            'is_group' => false,
+            'is_user' => true,
+            'is_admin' => (bool)$this->is_admin,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'blocked_at' => $this->blocked_at,
