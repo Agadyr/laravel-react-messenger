@@ -36,7 +36,7 @@ class MessageController extends Controller
     {
         $messages = Messages::where('group_id', $group->id)
             ->Latest()
-            ->paginate(50);
+            ->paginate(10);
 
         return inertia('Home', [
             'selectedConversation' => $group->toConversationArray(),
@@ -99,7 +99,7 @@ class MessageController extends Controller
         }
 
         if ($groupId) {
-            Conversation::updateGroupWithMessage($groupId, $message);
+            Group::updateGroupWithMessage($groupId, $message);
         }
 
         SocketMessage::dispatch($message);
@@ -110,10 +110,12 @@ class MessageController extends Controller
 
     public function destroy(Message $message)
     {
-        if ($message->sender - id !== auth()->id()) {
+        if ($message->sender_id !== auth()->id()) {
             return response()->json(['message'=>  'Forbidden', 403]);
         }
 
         $message->delete();
+
+        return response('', 204);
     }
 }
