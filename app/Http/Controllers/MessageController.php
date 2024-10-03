@@ -110,6 +110,10 @@ class MessageController extends Controller
 
     public function destroy(Message $message)
     {
+        if ($message->sender - id !== auth()->id()) {
+            return response()->json(['message'=>  'Forbidden', 403]);
+        }
 
+        $message->delete();
     }
 }
