@@ -13,11 +13,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
     Route::delete('/message/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
     Route::get('/message/older/{message}', [MessageController::class, 'loadOlder'])->name('messages.loadOlder');
-    //    Route::get('/user/{user}', function () {
-//    })->name('chat.user');
-//    Route::get('/group/{group}', function () {
-//
-//    })->name('chat.group');
+
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('dashboard');
 });
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Storage;
 
-class MessageAttachmentResource extends JsonResource
+class  MessageAttachmentResource extends JsonResource
 {
     public static $wrap = false;
     /**
